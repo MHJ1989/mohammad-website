@@ -12,12 +12,15 @@
   <meta property="og:url" content="https://mhj1989.github.io/mohammad-website/" />
   <meta name="twitter:card" content="summary_large_image" />
   <title>الإعلامي محمد حسن جانم</title>
-  <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Monastery_of_Yonan_the_Stylite%2C_Kfer_Daryan_%28%D9%83%D9%81%D8%B1_%D8%AF%D8%B1%D9%8A%D9%86%29%2C_Syria_-_West_fa%C3%A7ade_and_south_side_of_chapel-monastery_from_southwest_-_PHBZ024_2016_4580_-_Dumbarton_Oaks.jpg/500px-thumbnail.jpg" />
+  <link rel="icon" type="image/png" href="favicon.ico" /> <!-- favicon أصغر حجمًا -->
+
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
   />
+
   <style>
+    /* ----------------- قواعد عامة ----------------- */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -27,13 +30,14 @@
     body {
       background-color: #f9f9f9;
       font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
       padding: 20px;
+      padding-top: 80px; /* مساحة أكبر لتجنب تغطية */
+      margin: 0;
+      min-height: 100vh;
+      scroll-behavior: smooth; /* تحريك ناعم للتمرير */
     }
 
+    /* ----------------- الحاوية الرئيسية ----------------- */
     .main-container {
       display: flex;
       flex-direction: column;
@@ -44,17 +48,25 @@
       text-align: center;
     }
 
+    /* ----------------- العناوين ----------------- */
     h1,
     h2 {
       color: #222;
     }
 
+    /* ----------------- الصور ----------------- */
     img {
       width: 300px;
       height: auto;
       border-radius: 12px;
+      transition: transform 0.3s ease;
     }
 
+    img:hover {
+      transform: scale(1.05);
+    }
+
+    /* ----------------- روابط التواصل الاجتماعي ----------------- */
     .social-links {
       display: flex;
       flex-wrap: wrap;
@@ -69,11 +81,18 @@
       text-decoration: none;
       border-radius: 8px;
       font-weight: bold;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      display: flex;
+      align-items: center;
     }
 
     .social-links a:hover {
       opacity: 0.85;
+      transform: translateY(-3px);
+    }
+
+    .social-links i {
+      margin-left: 8px;
     }
 
     .social-links a.pinterest {
@@ -103,24 +122,70 @@
     .social-links a.telegram {
       background-color: #0088cc;
     }
+.contact-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+}
 
-    .social-links i {
-      margin-left: 8px;
-    }
+.contact-buttons a {
+  padding: 10px 20px;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
 
+.contact-buttons a:hover {
+  opacity: 0.85;
+  transform: translateY(-3px);
+}
+
+/* الألوان الخاصة لكل زر */
+.contact-buttons a.whatsapp {
+  background-color: #25d366;
+}
+
+.contact-buttons a.telegram {
+  background-color: #0088cc;
+}
+
+/* زر اتصال سيرياتيل - لون مميز */
+.contact-buttons a.syriatel-call {
+  background-color: #ff6600; /* لون برتقالي يناسب سيرياتيل */
+}
+
+/* أيقونة فون من FontAwesome */
+.contact-buttons i {
+  font-size: 18px;
+}
+.contact-buttons a.gmail {
+  background-color: #9c443c; /* لون أحمر Gmail */
+}
+
+
+    /* ----------------- النصوص ----------------- */
     .info-text {
       color: #0066ff;
       text-align: justify;
       line-height: 1.8;
       font-size: 18px;
+      max-width: 800px;
     }
 
+    /* ----------------- شبكة الفيديوهات ----------------- */
     .videos-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 20px;
       width: 100%;
       margin: 30px auto;
+      max-width: 1200px;
     }
 
     .video-container iframe {
@@ -129,6 +194,7 @@
       border-radius: 12px;
     }
 
+    /* ----------------- استجابة التصميم ----------------- */
     @media (max-width: 500px) {
       img {
         width: 100%;
@@ -138,6 +204,8 @@
         font-size: 16px;
       }
     }
+
+    /* ----------------- شريط التنقل (Navbar) ----------------- */
     .navbar {
       position: fixed;
       top: 0;
@@ -232,17 +300,40 @@
         display: flex;
       }
     }
-    body {
-  padding-top: 60px;
-}
 
+    /* تصحيح padding-top بسبب شريط التنقل */
+    body {
+      padding-top: 60px;
+    }
+
+    /* ----------------- زر العودة للأعلى ----------------- */
+    #scrollToTopBtn {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      background-color: #0066ff;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      padding: 12px 16px;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      display: none;
+      z-index: 1001;
+      transition: background-color 0.3s ease;
+    }
+
+    #scrollToTopBtn:hover {
+      background-color: #004bb5;
+    }
   </style>
 </head>
 
 <body>
-  <nav class="navbar">
+  <nav class="navbar" role="navigation" aria-label="القائمة الرئيسية">
     <div class="container">
-      <a href="#" class="logo">محمد حسن جانم</a>
+      <a href="#" class="logo">MHJ1989</a>
       <button
         class="hamburger"
         aria-label="فتح القائمة"
@@ -261,12 +352,13 @@
     </div>
   </nav>
 
-  <div class="main-container">
+  <div class="main-container" id="home">
     <h1>الموقع الرسمي للإعلامي<br />محمد حسن جانم</h1>
 
     <img
       src="https://i.pinimg.com/736x/70/22/26/702226ff697844d04ff66ccaada35340.jpg"
-      alt="it's me"
+      alt="صورة الإعلامي محمد حسن جانم"
+      loading="lazy"
     />
 
     <h2>
@@ -274,52 +366,58 @@
       لمواجهة التحديات ومواكبة الركب العالمي
     </h2>
 
-    <div class="social-links">
+    <div class="social-links" role="navigation" aria-label="روابط التواصل الاجتماعي">
       <a
         href="https://pin.it/StNLBbaQx"
         target="_blank"
         class="pinterest"
+        aria-label="صفحة Pinterest الخاصة بمحمد حسن جانم"
+        rel="noopener noreferrer"
         ><i class="fab fa-pinterest"></i> Pinterest</a
       >
       <a
         href="https://www.facebook.com/share/198fiAVMx7/"
         target="_blank"
         class="facebook"
+        aria-label="صفحة Facebook الخاصة بمحمد حسن جانم"
+        rel="noopener noreferrer"
         ><i class="fab fa-facebook-f"></i> Facebook</a
       >
       <a
         href="https://www.instagram.com/mhj1989mhj"
         target="_blank"
         class="instagram"
+        aria-label="صفحة Instagram الخاصة بمحمد حسن جانم"
+        rel="noopener noreferrer"
         ><i class="fab fa-instagram"></i> Instagram</a
       >
       <a href="https://x.com/abotharab36" target="_blank" class="x"
+        aria-label="صفحة X (تويتر سابقاً) الخاصة بمحمد حسن جانم"
+        rel="noopener noreferrer"
         ><i class="fab fa-x-twitter"></i> X</a
       >
       <a href="https://youtube.com/@aboabo348" target="_blank" class="youtube"
+        aria-label="قناة YouTube الخاصة بمحمد حسن جانم"
+        rel="noopener noreferrer"
         ><i class="fab fa-youtube"></i> YouTube</a
       >
       <a
         href="https://www.linkedin.com/in/muhammad-janem-191ab9215?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
         target="_blank"
         class="linkedin"
+        aria-label="صفحة LinkedIn الخاصة بمحمد حسن جانم"
+        rel="noopener noreferrer"
         ><i class="fab fa-linkedin-in"></i> LinkedIn</a
       >
       <a
         href="https://ali-pasha.com/products?id=43894"
         target="_blank"
         class="store"
+        aria-label="متجر علي باشا الخاص بمحمد حسن جانم"
+        rel="noopener noreferrer"
         ><i class="fas fa-store"></i> متجري الخاص في علي باشا</a
       >
-      <a
-        href="https://wa.me/963982762863"
-        target="_blank"
-        class="whatsapp"
-        ><i class="fab fa-whatsapp"></i> WhatsApp</a
-      >
-      <a href="https://t.me/MHJ1989MHJ" target="_blank" class="telegram"
-        ><i class="fab fa-telegram-plane"></i> Telegram</a
-      >
+      
     </div>
 
     <div class="info-text">
@@ -344,6 +442,7 @@
     <div class="videos-grid">
       <div class="video-container">
         <iframe
+          loading="lazy"
           src="https://www.youtube.com/embed/Uf4ebtj91R4"
           title="فيديو 1"
           frameborder="0"
@@ -352,6 +451,7 @@
       </div>
       <div class="video-container">
         <iframe
+          loading="lazy"
           src="https://www.youtube.com/embed/q2jgO3JU2ak"
           title="فيديو 2"
           frameborder="0"
@@ -360,6 +460,7 @@
       </div>
       <div class="video-container">
         <iframe
+          loading="lazy"
           src="https://www.youtube.com/embed/rHhZObKPtd0"
           title="فيديو 3"
           frameborder="0"
@@ -368,6 +469,7 @@
       </div>
       <div class="video-container">
         <iframe
+          loading="lazy"
           src="https://www.youtube.com/embed/NC_aiyC_bzI"
           title="فيديو 4"
           frameborder="0"
@@ -375,19 +477,83 @@
         ></iframe>
       </div>
     </div>
-  </div>
+
+    <hr style="border: none; height: 2px; background-color: #ccc; width: 80%; margin: 40px 0" />
+
+    <h2 id="contact">تواصل معي</h2>
+<p>
+  يمكنك التواصل معي عبر حسابات التواصل الاجتماعي أعلاه أو عبر الرسائل الخاصة.
+</p>
+
+<div class="contact-buttons">
+  <a
+  href="mailto:mjanem1989@gmail.com"
+  class="gmail"
+  aria-label="التواصل عبر البريد الإلكتروني Gmail مع محمد حسن جانم"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <i class="fas fa-envelope"></i> Gmail
+</a>
+
+  <a
+    href="https://wa.me/963982762863"
+    target="_blank"
+    class="whatsapp"
+    aria-label="التواصل عبر WhatsApp مع محمد حسن جانم"
+    rel="noopener noreferrer"
+  >
+    <i class="fab fa-whatsapp"></i> WhatsApp
+  </a>
+  <a
+    href="https://t.me/MHJ1989MHJ"
+    target="_blank"
+    class="telegram"
+    aria-label="التواصل عبر Telegram مع محمد حسن جانم"
+    rel="noopener noreferrer"
+  >
+    <i class="fab fa-telegram-plane"></i> Telegram
+  </a>
+  <a
+    href="tel:+963982762863"
+    class="syriatel-call"
+    aria-label="الاتصال عبر سيرياتيل مع محمد حسن جانم"
+  >
+    <i class="fas fa-phone"></i> سيرياتيل
+  </a>
+</div>
+
+
+  <button id="scrollToTopBtn" 
+    aria-label="العودة إلى الأعلى" 
+    title="العودة إلى الأعلى"> ↑ 
+  </button>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const hamburger = document.querySelector(".hamburger");
-      const navLinks = document.querySelector(".nav-links");
+    // زر الهمبرجر
+    const hamburger = document.querySelector(".hamburger");
+    const navLinks = document.querySelector(".nav-links");
 
-      hamburger.addEventListener("click", () => {
-        navLinks.classList.toggle("show");
-        hamburger.classList.toggle("active");
-        const expanded = hamburger.getAttribute("aria-expanded") === "true" || false;
-        hamburger.setAttribute("aria-expanded", !expanded);
-      });
+    hamburger.addEventListener("click", () => {
+      const expanded = hamburger.getAttribute("aria-expanded") === "true";
+      hamburger.setAttribute("aria-expanded", !expanded);
+      hamburger.classList.toggle("active");
+      navLinks.classList.toggle("show");
+    });
+
+    // زر العودة للأعلى
+    const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        scrollToTopBtn.style.display = "block";
+      } else {
+        scrollToTopBtn.style.display = "none";
+      }
+    });
+
+    scrollToTopBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
   </script>
 </body>
